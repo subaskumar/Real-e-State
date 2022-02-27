@@ -15,7 +15,8 @@ export default function LabTabs(props) {
     <Box sx={{ width: '100%',minHeight: '500px' , typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList onChange={handleChange} aria-label="lab API tabs example" 
+          variant='scrollable' scrollButtons allowScrollButtonsMobile>
             <Tab label="Overview PROPERTY" value="1" />
             <Tab label="Descriptions" value="2" />
             <Tab label="Location" value="3" />
@@ -30,42 +31,42 @@ export default function LabTabs(props) {
             >
                 PROPERTY DETAILS
             </Typography>
-            <Grid container md={12} className='listing_detail'>
-                <Grid item md={3.5} >
+            <Grid container className='listing_detail'>
+                <Grid item md={3.5} xs={6}>
                     <span >Property Type</span>
                     <p>{props.home_type}</p>
                 </Grid>
-                <Grid item md={3.5}>
+                <Grid item md={3.5} xs={6}>
                     <span >Total Rooms</span>
                     <p>{props.bedrooms}</p>
                 </Grid>
-                <Grid item md={3.5}>
+                <Grid item md={3.5} xs={6}>
                     <span >Square Foots</span>
                     <p>{props.sqft}</p>
                 </Grid>
 
             </Grid>
-            <Grid container md={12} className='listing_detail'>
-                <Grid item md={3.5}>
+            <Grid container className='listing_detail'>
+                <Grid item md={3.5} xs={6}>
                     <span >Sale/Rent</span>
                     <p>{props.sale_type}</p>
                 </Grid>
-                <Grid item md={3.5}>
+                <Grid item md={3.5} xs={6}>
                     <span >Listing Date</span>
                     <p>{props.past_time}</p>
                 </Grid>
-                <Grid item md={3.5}>
+                <Grid item md={3.5} xs={6}>
                     <span >Total bathrooms</span>
                     <p>{props.bathrooms}</p>
                 </Grid>
 
             </Grid>
-            <Grid container md={12} className='listing_detail'>
-                <Grid item md={3.5}>
+            <Grid container className='listing_detail'>
+                <Grid item md={3.5} xs={6}>
                     <span >Price</span>
                     <p>{props.price}</p>
                 </Grid>
-                <Grid item md={3.5}>
+                <Grid item md={3.5} xs={6}>
                     <span >address</span>
                     <p>{props.city},{props.zipcode}</p>
                 </Grid>
@@ -92,7 +93,7 @@ export default function LabTabs(props) {
             </Typography>
             <Box sx={{height: '250px'}}>
                 <iframe title="google map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d60059.627865941715!2d85.821483!3d19.80918!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19c4180256e495%3A0x496a9d8b30c1fad7!2sPuri%2C%20Odisha%2C%20India!5e0!3m2!1sen!2sus!4v1582097046697!5m2!1sen!2sus" 
-                    width="100%" height="100%" frameBorder="0" allowFullscreen=""></iframe>
+                    width="100%" height="100%" frameBorder="0" allowFullScreen=""></iframe>
             </Box>
             <Button sx={{backgroundColor: '#3c9dff', p:1.3,
                         "&:hover": {backgroundColor: '#3c9dff'},

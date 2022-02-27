@@ -1,25 +1,25 @@
-import { useState,useEffect,useRef } from "react";
-import {Typography, Button,IconButton,
-          Grid,Box,Container , InputBase,Pagination,Stack} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { useState,useEffect } from "react";
+import {Typography,Grid,Box,Container ,Pagination,Stack} from '@mui/material';
+// import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import { useNavigate,useParams} from 'react-router-dom';
 import ListingCard from '../components/ListingCard'
+import {Filter} from '../components/SearchForm'
+
 
 
 
 const Listings = () =>{
-    const { sale_type,min_price,max_price,bedrooms,home_type,sqft,keywords,Ppage } = useParams()
-    // const [page, setPage] = useState(1);
-    const page = parseInt(Ppage)
 
+    const { sale_type,min_price,max_price,bedrooms,home_type,sqft,keywords,Ppage } = useParams()
+    const page = parseInt(Ppage)
+    const initialState = {sale_type:sale_type,min_price:min_price,max_price:max_price, 
+          bedrooms:bedrooms,home_type:home_type, sqft:sqft,keywords:keywords,page:page}
     const navigate = useNavigate();
     const [listings, setListings] = useState([])
     const [count,setCount] = useState(0)
     const total_page = Math.ceil(count/3)
-    const nav_btns = ['For Sale', 'Min Price','Max Price', 'Bedrooms','Home Type','Square Foot']
-    const formData = {sale_type:sale_type,min_price:min_price,max_price:max_price,
-                        bedrooms:bedrooms,home_type:home_type,sqft:sqft,keywords:keywords,page:page}
+    
   
   useEffect(() => {
     document.body.classList.add("scrollBody")
@@ -28,10 +28,9 @@ const Listings = () =>{
                 'Content-Type': 'application/json'
             }
         }
-   
     const fetchData = async () => {
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/listings/search/`, {params: formData}, config);
+            const res = await axios.get(`http://127.0.0.1:8000/api/listings/search/`, {params: initialState}, config);
             setListings(res.data.results);
             setCount(res.data.count)
         }
@@ -42,46 +41,36 @@ const Listings = () =>{
     return () => {
       document.body.classList.remove("scrollBody")
     }
-  },[page]);
+  },[sale_type,min_price,max_price,bedrooms,home_type,sqft,keywords,page]);
 
   const handlePageNumber = (event , value) => {
     navigate(`/listings/search/${sale_type}&${min_price}&${max_price}&${bedrooms}&${home_type}&${sqft}&${keywords}&${value}`)
-    
   };
-
 
   return (
     <>
-    <Container maxWidth="xl" sx={{flexGrow: 1,display: { xs: 'none', md: 'block' }, height: '55px',justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', border: '1px solid rgb(204, 204, 204)'}}>
-      <Box sx={{padding: '10px 2px', textTransform: 'capitalize'}}>
-        <div className="Listing_searchPg" >
-          <InputBase
-                  sx={{ width: '200px', fontSize: '12px', fontWeight: '600', color: 'black', }}
-                  placeholder="ZipCode or City" name="keywords" id="input"
-                  
+    <Container maxWidth="xl" sx={{display: { xs: 'none', sm: 'block' }, height: '60px',
+           backgroundColor: '#fff', border: '1px solid rgb(204, 204, 204)'}}>
+      <Box sx={{padding: '10px 2px', textTransform: 'capitalize',display: 'flex'}} className="filter_input">
+        <Filter 
+            sale_type = {sale_type}
+            min_price = {min_price}
+            max_price = {max_price}
+            bedrooms = {bedrooms}
+            home_type = {home_type}
+            sqft = {sqft}
+            keywords = {keywords}
+        
           />
-          <IconButton sx={{ p: '2px' }} aria-label="search" type="submit">
-            <SearchIcon sx={{ fontSize: '18px', color: 'green'}}/>
-          </IconButton>
-        </div>
-      {
-        nav_btns.map((btn) => (
-          <Button variant="outlined" size="small" sx={{mx: 1, padding: '2px 20px', textTransform: 'capitalize', borderRadius : '2px',border: '1px solid rgb(209, 209, 213)'}} >
-            {btn}</Button>
-        )
-        )}
-        <Button variant="outlined" size="small" sx={{backgroundColor: 'rgb(0, 106, 255)',color: '#fff' ,mx: 1.5, padding: '5px 10px', textTransform: 'capitalize', borderRadius : '5px',border: '1px solid rgb(209, 209, 213)'}} >
-            Save search
-        </Button>
       </Box>
     </Container>
     <Box>
       <Grid container sx={{margin: 'auto'}}>
           <Grid item md={3.5} sx={{position: 'sticky',display: { xs: 'none', md: 'flex' }}}  >
             <iframe title="google map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d60059.627865941715!2d85.821483!3d19.80918!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19c4180256e495%3A0x496a9d8b30c1fad7!2sPuri%2C%20Odisha%2C%20India!5e0!3m2!1sen!2sus!4v1582097046697!5m2!1sen!2sus" 
-                width="100%" height="100%" frameBorder="0" allowFullscreen=""></iframe>
+                width="100%" height="100%" frameBorder="0" allowFullScreen=""></iframe>
           </Grid>
-          <Grid container sm={12} md={8.5} sx={{height:'490px', zIndex: '1', overflow: 'hidden', overflowY: 'scroll',boxShadow: '-2px 2px 5px 0 rgb(0 0 0 / 40%)'}}>
+          <Grid item sm={12} md={8.5} sx={{height:'490px', zIndex: '1', overflow: 'hidden', overflowY: 'scroll',boxShadow: '-2px 2px 5px 0 rgb(0 0 0 / 40%)'}}>
             
               <Box sx={{height: '65px',width: '100%'}}>
                 <Typography gutterBottom variant="h5" component="div"
@@ -90,10 +79,10 @@ const Listings = () =>{
                 </Typography>
                 <Typography gutterBottom variant="span" component="div" color="text.secondary"
                   sx={{display: 'inline',borderRadius: '24px',padding: {xs: '2px 10px', md: '6px 20px'},backgroundColor: 'rgb(235, 12, 123)',color: '#fff',float: 'right',margin: {xs: '10px 2px 2px', md:'15px 15px 3px'},fontFamily: "'Playfair Display', serif", fontSize: {xs: '13px', md: '17px'},fontWeight: '500'}}>
-                    25 Listings found
+                    {count} Listings found
                 </Typography>
               </Box>
-              <Grid container sm={12} md={12} sx={{justifyContent: 'center'}} >
+              <Grid container sx={{justifyContent: 'center'}} >
                 {
                   listings.map((listing)=> (
                     <ListingCard
@@ -107,13 +96,14 @@ const Listings = () =>{
                      bathrooms={listing.bathrooms} 
                      sqft={listing.sqft}
                      past_time = {listing.past_time}
+                     key={listing.slug}
 
                     />
                   ))
                 }
               
               </Grid>
-              <Grid container sm={12} md={12} sx={{justifyContent: 'center', padding: '40px 0px'}} >
+              <Grid container sx={{justifyContent: 'center', padding: '40px 0px'}} >
                 <Stack spacing={2}>
                   <Pagination count={total_page} onChange={handlePageNumber} color="primary" page={page} />
                   {/* <Pagination count={10} color="secondary" /> */}

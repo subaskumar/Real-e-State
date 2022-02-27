@@ -9,13 +9,13 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 480,
+  width: {md:480,sm: 430,xs: 340},
   bgcolor: 'background.paper',
   boxShadow: 24,
-  padding: '0px 30px 30px'
+  padding: { md:'0px 30px 30px', xs:'0px 15px 20px' },
 };
 
-const UserModal = (props) =>{
+const UserModal = () =>{
     const { open , component } = useSelector(state=> state.modal)
     const dispatch = useDispatch()
     

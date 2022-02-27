@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import { useSelector,useDispatch} from "react-redux";
 import {property_type } from "../features/saleSlice"
-// import Axios from 'axios'
 import {useNavigate} from 'react-router-dom';
+import {Box,TextField,MenuItem,Paper,Divider,InputBase,IconButton,Button} from '@mui/material';
 
-import {Box,TextField,MenuItem,Paper,Divider,InputBase,IconButton} from '@mui/material';
+
 
 const sale_types = [{value: 'For Sale',label: 'For Buy',},{ value: 'For Rent', label: 'For Rent',},];
 const home_types = [{value: 'House',label: 'House',},{ value: 'Condo', label: 'Condo',},
@@ -22,6 +22,117 @@ const Bedrooms = [{value: '1',label: '1+',},{ value: '2', label: '2+',},
                 {value: '5',label: '5+',},];
 const SquareFoot = [{value: '1000',label: '1000+',},{ value: '2000', label: '2000+',},
                 {value: '3000',label: '3000+',},{ value: '5000', label: '5000+',},];
+
+
+export const Filter = (props) => {
+
+  const navigate = useNavigate()
+  const [preventInitial,setPreventInitial] = useState('')
+
+  // const dispatch = useDispatch();
+  // const { sale_rent } = useSelector(state => state.SaleRent);
+  // const sale_type = sale_rent
+  // const saleRentChange = (event) => {
+  //   dispatch(property_type(event.target.value))
+  //   console.log(event.target.value)
+  // }
+
+  const [formData, setFormData] = useState({sale_type: props.sale_type, min_price: props.min_price, max_price: props.max_price,
+        bedrooms: props.bedrooms, home_type: props.home_type, sqft: props.sqft, keywords: props.keywords });
+
+  const {sale_type,min_price,max_price, bedrooms, home_type, sqft, keywords } = formData;
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+    setPreventInitial('ready')
+
+  };
+
+  useEffect(() => {
+    if(preventInitial){
+      navigate(`/listings/search/${sale_type}&${min_price}&${max_price}&${bedrooms}&${home_type}&${sqft}&${keywords}&${1}`)
+    }
+  },[formData])
+
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/listings/search/${sale_type}&${min_price}&${max_price}&${bedrooms}&${home_type}&${sqft}&${keywords}&${1}`)
+   
+  }
+
+  return(
+    <>
+        <div className="Listing_searchPg">
+          <InputBase
+            sx={{ width: '90px', fontSize: '12px', fontWeight: '600', color: 'black',padding: '5px 5px' }}
+            placeholder="ZipCode or City" name="keywords" id="input" value={keywords}  onChange={handleChange}
+                    
+            />
+        </div>
+        <TextField select name="sale_type" label="Sale or Rent" sx={{mr:1.5,p:0,width: '110px',}}
+            size='small' value={sale_type} onChange={handleChange}
+          >
+            {sale_types.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <TextField select name="min_price" label="Min Price" sx={{mr:1.5,width: '110px'}}
+            size='small' value={min_price} onChange={handleChange}
+          >
+            {min_prices.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <TextField select name="max_price" label="Max Price" sx={{mr:1.5,width: '110px'}}
+            size='small' value={max_price} onChange={handleChange}
+          >
+            {max_prices.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <TextField select name="bedrooms" label="Bedrooms" sx={{mr:1.5,width: '110px'}}
+            size='small' value={bedrooms} onChange={handleChange}
+          >
+            {Bedrooms.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+        <TextField select name="home_type" label="Home Type" sx={{mr:1.5,width: '110px'}}
+            size='small' value={home_type} onChange={handleChange}
+          >
+             {home_types.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+
+        <TextField select name="sqft" label="Square Foot" size='small'
+            value={sqft} onChange={handleChange} sx={{mr:1.5,width: '110px'}}
+          >
+            {SquareFoot.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+        </TextField>
+      
+        <Button type="submit" variant="outlined" size="small" sx={{backgroundColor: 'rgb(0, 106, 255)',color: '#fff' ,mx: 1, 
+          padding: '2px 5px', height: '38px',textTransform: 'capitalize', borderRadius : '2px',fontSize: '12px'}}  onClick={onSubmit}>
+          Search
+        </Button>
+    </>
+  )
+}
 
 export default function SearchForm() {
 
@@ -54,7 +165,7 @@ export default function SearchForm() {
       <Box
         component="form" Validate autoComplete="off"
         onSubmit={e => onSubmit(e)}
-        sx={{ '& .MuiTextField-root': { m: 1, width: { xs: '10ch', md: '20ch' } , color: 'white' },}}
+        sx={{ '& .MuiTextField-root': { m: 1, width: { xs: '11ch',sm: '17ch', md: '20ch' } , color: 'white' },}}
       >
         <div>
         <TextField

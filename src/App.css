@@ -78,10 +78,20 @@ span.MuiFormControlLabel-label{
   height: 20px;
 }
 .Listing_searchPg{
-  display: inline;
+  display: flex;
   border: 1px solid rgb(209, 209, 213);
-  padding: 2px 5px 5px 10px;
+  height: 15px;
+  padding: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+  border-radius: 2px;
 }
+/* @media only screen and (max-width: 800px) {
+  .Listing_searchPg{
+    display: none;
+  }
+} */
+
 a{
   text-decoration: none;
 }
@@ -118,9 +128,10 @@ a{
 }
 .home_Service_heading{
   text-align: center;
-  font-size: 20px;
+  font-size: clamp(16px, 3vw, 20x);
   margin-top: 80px;
   margin-bottom: 40px;
+  padding: 0px 15px;
   color: #2A2A33;
   line-height: 24px;
   font-family : "Ivar Headline","Ivar Headline Subset","Times New Roman",serif;
@@ -156,4 +167,8 @@ a{
   to {
     transform: rotate(360deg);
   }
+}
+span.MuiFormControlLabel-label {
+  font-size: clamp(11px, 2vw, 14px);
+  line-height: 15px;
 }

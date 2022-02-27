@@ -25,11 +25,12 @@ const useStyles = makeStyles((theme) => ({
     footerMain: {
         color: '#fff',
         fontFamily: 'Neonderthaw',
-        fontSize: '31px'
+        fontSize: 'clamp(22px, 2vw, 32px)',
+        display: 'flex'
     },
     footerMainIcon: {
         color:'rgb(112, 157, 8)',
-        fontSize: "35px", 
+        fontSize: "clamp(22px, 2vw, 35px)", 
         margin: "0 10px -8px 0px"
     },
     footerHead: {
@@ -49,7 +50,7 @@ const Footer = () => {
         <footer className={classes.footer}>
           <Container maxWidth="lg" sx={{height: 'auto'}}>
             <Grid container spacing={2} className="footer_list" >
-              <Grid item xs={12} md={5} sx={{marginRight: "15px"}}>
+              <Grid item xs={12} sm={6.5} md={5} sx={{marginRight: "15px"}}>
                 <div>
                   <Typography
                     variant="h5"
@@ -57,7 +58,7 @@ const Footer = () => {
                     className={classes.footerMain}
                     >
                     <LanguageIcon className={classes.footerMainIcon} />
-                    RealtorNilachal.com
+                    ZillowClone.com
                   </Typography>
                 </div>
                 <div style={{marginTop: '35px', color:'#fff'}}>
@@ -76,7 +77,7 @@ const Footer = () => {
                     </IconButton>
                 </div>
               </Grid>
-              <Grid item xs={15} md={2.1} sx={{ marginRight: "15px"}}>
+              <Grid item xs={12} sm={4.5} md={2.1} sx={{ marginRight: "15px"}}>
                 <Typography
                     variant="h6"
                     noWrap
@@ -93,7 +94,7 @@ const Footer = () => {
                 </div>
 
               </Grid>
-              <Grid item xs={12} md={2.2} sx={{marginRight: "15px"}}>
+              <Grid item xs={12} sm={6.5} md={2.2} sx={{marginRight: "15px"}}>
                 <Typography
                     variant="h6"
                     noWrap
@@ -110,7 +111,7 @@ const Footer = () => {
                   </ul>
                 </div>
               </Grid>
-              <Grid item xs={12} md={2} >
+              <Grid item xs={12} sm={4.5} md={2} >
                 <Typography
                     variant="h6"
                     noWrap

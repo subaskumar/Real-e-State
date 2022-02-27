@@ -2,18 +2,14 @@ import { useState,useEffect } from "react";
 import {useParams} from "react-router-dom";
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
-import {Box,Typography,Container,
-    Grid,CardMedia,Button,ImageList,ImageListItem,TextField} from '@mui/material/';
+import {Box,Typography,Container,InputLabel,FormControl,InputAdornment,Input,
+    Grid,CardMedia,Button,ImageList,ImageListItem,TextField} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FullWidthTabs from '../components/tabs';
 import isWeekend from 'date-fns/isWeekend';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
@@ -118,12 +114,12 @@ const ListingDetails = () =>{
             >
         <Typography
             color="inherit" align="center" variant="h3"
-            sx={{ mb: 1, mt: { sx: 4, sm: 10 }, fontFamily: 'italic' }}
+            sx={{ mb: 1, mt: { sx: 4, sm: 10 }, fontFamily: 'italic',fontSize: 'clamp(25px,6vw, 40px)' }}
         >
             {listing.title}
         </Typography>
 
-        <Typography variant="span" color="inherit" sx={{ mt: 1, fontSize: '22px',color: 'rgb(0, 106, 255)', fontWeight: '500' }}>
+        <Typography variant="span" color="inherit" sx={{ mt: 1, fontSize: 'clamp(17px,2vw, 22px)',color: 'rgb(0, 106, 255)', fontWeight: '500' }}>
             {listing.city},{listing.state},{listing.zipcode}
         </Typography>
             <Box
@@ -136,11 +132,11 @@ const ListingDetails = () =>{
         </ProductHeroLayoutRoot>
 
         <Container maxWidth="lg" >
-            <Grid container sm={12} md={12} p={2}>
+            <Grid container p={2}>
                 <Grid item xs={12} md={12} sx={{marginBottom: '50px'}}>
                     <Typography
                         color="inherit" align="left" variant="h5"
-                        sx={{ mb: 1, mt: { sx: 3, sm: 7 },fontWeight: '500' }}
+                        sx={{ mb: 1, mt: { sx: 3, sm: 7 },fontWeight: '500',fontSize: 'clamp(18px,3vw, 27px)' }}
                     >
                         {listing.title}
                     </Typography>
@@ -207,7 +203,7 @@ const ListingDetails = () =>{
                     >
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <StaticDatePicker
-                            orientation=""
+                            orientation="portrait"
                             openTo="day"
                             value={TourDate}
                             shouldDisableDate={isWeekend}
@@ -292,6 +288,3 @@ const ListingDetails = () =>{
 }
 
 export default ListingDetails;
-
-
-

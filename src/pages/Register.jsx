@@ -77,21 +77,21 @@ const Register = () =>{
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box sx={{ marginTop: 2, display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main',height: {md:'35px',sm:'32px',xs:'30px'},width: {md:'35px',sm:'32px',xs:'30px'} }}>
+                        <LockOutlinedIcon sx={{fontSize: '20px'}}/>
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" sx={{fontSize: 'clamp(18px, 3vw, 22px)'}}>
                         Sign up
                     </Typography>
-                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
+                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3,fontSize: 'clamp(14px, 3vw, 17px)' }}>
+                    <Grid container spacing={2} sx={{fontSize: 'clamp(14px, 3vw, 17px)'}}>
                     <Grid item xs={12}>
-                        <TextField required fullWidth id="Name" label="Full Name"  autoFocus
+                        <TextField required fullWidth id="Name" label="Full Name"  autoFocus size="small"
                         name="name" autoComplete="family-name" value={formData.name}  onChange={e => onChange(e)}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField required fullWidth id="email" label="Email Address" helperText={Eerrors.emailMsg}
+                        <TextField required fullWidth id="email" label="Email Address" size="small" helperText={Eerrors.emailMsg}
                         name="email" autoComplete="email" value={formData.email}  onChange={e => onChange(e)}
                         error={Eerrors.emailError} onKeyUp={checkEmailError}
                         />
@@ -109,7 +109,7 @@ const Register = () =>{
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <FormControlLabel size="small"
+                        <FormControlLabel size="small" sx={{fontSize: '9px'}}
                         control={<Checkbox value="allowExtraEmails" color="primary" size="small" />}
                         label="Send me the latest news about real estate and tips to buy or sell properties."
                         />
@@ -120,7 +120,7 @@ const Register = () =>{
                     </Button>
                     <Grid container justifyContent="flex-end">
                     <Grid item>
-                        <Link href="#" variant="body2" onClick={swipContent}>
+                        <Link href="#" variant="body2" onClick={swipContent} sx={{fontSize: 'clamp(12px, 2vw, 15px)'}}>
                             Already have an account? Sign in
                         </Link>
                     </Grid>

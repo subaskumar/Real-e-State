@@ -1,6 +1,7 @@
 import {useState} from 'react';
+// import ReactDOM  from 'react-dom';
 import {AppBar,Box,Toolbar,IconButton, Typography,
-    Menu,Container,Avatar,Button , Tooltip, MenuItem, Grid,LinearProgress } from '@mui/material';
+    Menu,Container,Avatar,Button , Tooltip, Grid,LinearProgress } from '@mui/material';
 
 import SwipeableTemporaryDrawer from './SideBar'
 import Logo from './logo2.svg'
@@ -17,8 +18,6 @@ const LoginAuth = () =>{
   // const { open , component } = useSelector(state=> state.modal)
   const dispatch = useDispatch()
 
-
-  
   const handleSignup = (event) => {
     dispatch(openModal(<Register />))
 
@@ -32,7 +31,7 @@ const LoginAuth = () =>{
 
       <Button
         onClick={handleSignup}
-        sx={{ fontSize: '17px',mx: 1, color: 'rgb(42, 42, 53)', fontWeight: 'normal', textTransform: 'capitalize'}}
+        sx={{ fontSize: '17px',mx: 1,display: {xs:'block',md: 'inline'}, color: 'rgb(42, 42, 53)', fontWeight: 'normal', textTransform: 'capitalize'}}
         >Register
       </Button>
       <Button
@@ -64,8 +63,6 @@ const LogOutAuth = () =>{
 const NavBar = () => {
   const { isAuthenticated,isLoading, } = useSelector(state => state.login);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
-  const settings = isAuthenticated ? ['Log out'] : ['Log In', 'Sign Up'];
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -114,7 +111,7 @@ const NavBar = () => {
               </Typography>
             </Grid>
             <Grid item xs={3} md={5} align="right" >
-              <Box sx={{display: { xs: 'none', md:'block'}}}>
+              <Box sx={{display: { xs: 'none',sm: 'none', md:'block'}}}>
                   <Button
                       component={Link} to="/aboutus"
                       sx={{ fontSize: '17px',mx: 1, color: 'rgb(42, 42, 53)', fontWeight: 'normal', textTransform: 'capitalize'}}
@@ -124,7 +121,7 @@ const NavBar = () => {
 
                   
               </Box>
-              <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+              <Box sx={{ display: { xs: 'block',sm:'block', md: 'none' } }}>
                   <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -146,11 +143,7 @@ const NavBar = () => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                   >
-                  {settings.map((setting) => (
-                      <MenuItem key={setting} >
-                      <Typography textAlign="center">{setting}</Typography>
-                      </MenuItem>
-                  ))}
+                    {isAuthenticated ?  <LogOutAuth /> : <LoginAuth /> }
                   </Menu>
               </Box>
             </Grid>

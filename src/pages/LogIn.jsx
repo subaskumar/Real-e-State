@@ -61,15 +61,15 @@ const LogIn = (props) =>{
           <Container component="main" maxWidth="xs">
             <CssBaseline />
               <Box sx={{marginTop: 2,display: 'flex',flexDirection: 'column',alignItems: 'center',}}>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
-                <Typography component="h1" variant="h5">
+              <Avatar sx={{ m: 1, bgcolor: 'secondary.main',height: {md:'35px',sm:'32px',xs:'30px'},width: {md:'35px',sm:'32px',xs:'30px'} }}></Avatar>
+                <Typography component="h1" variant="h5" sx={{fontSize: 'clamp(18px, 3vw, 22px)'}}>
                     Sign in
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                  <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" 
+                  <TextField margin="normal" required fullWidth id="email" label="Email Address" size="small" name="email" autoComplete="email" 
                     autoFocus onChange={(e) => setEmail(e.target.value)} value={email}
                    />
-                  <TextField margin="normal" required fullWidth name="password"
+                  <TextField margin="normal" required fullWidth name="password" size="small"
                         label="Password" type="password" id="password" autoComplete="current-password"
                         onChange={(e) => setPassword(e.target.value)} value={password}
                     />
@@ -83,13 +83,13 @@ const LogIn = (props) =>{
                         Sign In
                   </Button>
                   <Grid container>
-                    <Grid item xs>
-                        <Link href="#" variant="body2">
+                    <Grid item xs={12} sm={5}>
+                        <Link href="#" variant="body2" sx={{fontSize: 'clamp(12px, 2vw, 15px)'}}>
                             Forgot password?
                         </Link>
                     </Grid>
-                    <Grid item>
-                        <Link href="#" variant="body2" onClick={swipContent}>
+                    <Grid item xs={12} sm={7}>
+                        <Link href="#" variant="body2" onClick={swipContent} sx={{fontSize: 'clamp(12px, 2vw, 15px)'}}>
                             {"Don't have an account? Sign Up"}
                         </Link>
                     </Grid>

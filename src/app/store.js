@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore,getDefaultMiddleware } from '@reduxjs/toolkit';
 import loginReducer from '../features/Auth/loginSlice';
 import snackbarReducer from '../features/Alert/snackBarSlice';
 import saleRentReducer from '../features/saleSlice';
@@ -10,5 +10,8 @@ export default configureStore({
       snackBar: snackbarReducer,
       SaleRent: saleRentReducer,
       modal: modalReducer,
-  }
+  },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false
+  })
 })

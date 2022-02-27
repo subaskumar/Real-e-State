@@ -31,16 +31,16 @@ const ListingCard = (props) => {
 
   return (
     <>
-      <Grid item xs={12} sm={4} md={3.8} sx={{margin: '7px 5px', cursor: 'pointer'}} 
+      <Grid item xs={10} sm={5} md={3.8} sx={{margin: '7px 5px', cursor: 'pointer',justifyContent: 'center'}} 
         onClick={cardDetailClick} >
-        <Card sx={{ maxWidth: 345 }} >
+        <Card sx={{ maxWidth: '100%' }} >
           <div style={{position: 'relative' }}>
             <CardMedia
                 component="img" height="180" image={props.picture} alt="green iguana"
               />
             <IconButton  aria-label="favorite"  onClick={Likelisting}
             sx={{ color: 'white', position: 'absolute',top: '0', right: '0'}}>
-                <i class="far fa-heart" style={{fontSize: '33px',textShadow: '3px 6px #272634'}} />
+                <i className="far fa-heart" style={{fontSize: '33px',textShadow: '3px 6px #272634'}} />
             </IconButton>
             <Typography variant="body2" component="span" className="listings_card_imageText">
               {props.past_time }

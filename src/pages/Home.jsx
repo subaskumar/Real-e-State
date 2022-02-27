@@ -23,6 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 function ImgMediaCard() {
+  console.log("Home...")
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -55,21 +56,21 @@ function ImgMediaCard() {
 
   return (
     <>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 0, sm: 12, md: 12 }}>
       { image_obj.map((obj) => (
-        <Grid item xs={12} sm={4} md={4} key={obj.title}>
+        <Grid item xs={12} sm={6} md={4} key={obj.title}>
           <Item sx={{ boxShadow: 3, padding: '30px 10px 15px' }} className='card_home' onClick={() => focusInput(obj.title)}>
             <CardMedia component="img" alt="green iguana" height="180" image={obj.img}
               sx={{padding: '10px 5px 5px' }}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" 
-                sx={{color: 'rgb(42, 42, 51)', fontSize: '25px' ,fontWeight: '700', fontFamily: "'Ivar Headline', 'Ivar Headline Subset', 'Times New Roman', serif"}}>
+                sx={{color: 'rgb(42, 42, 51)', fontSize: 'clamp(22px, 3vw, 25px)' ,fontWeight: '700', fontFamily: "'Ivar Headline', 'Ivar Headline Subset', 'Times New Roman', serif"}}>
                 {obj.title}
               </Typography>
               <Typography variant="body2" color="text.secondary"
                 sx={{color: 'rgb(42, 42, 51)',fontFamily: "'Open Sans', Tahoma, Geneva, sans-serif",
-                    fontWeight: '300', fontSize: '16px',lineHeight: '24px'}}>
+                    fontWeight: '300', fontSize: 'clamp(13px, 3vw, 15px)',lineHeight: 'clamp(20px, 3vw, 22px)',minHeight: {md:'100px',xs: '80px'}}}>
                 {obj.body}
               </Typography>
               <div className='btn_card'>
@@ -101,7 +102,7 @@ const Home = () =>{
           </h3>
         </div>
         <div>
-          <Box sx={{ flexGrow: 1, padding: '0px 75px' }}>
+          <Box sx={{ flexGrow: 1, padding: {md:'0px 75px', xs: '0px 20px'} }}>
             <ImgMediaCard/>
           </Box>
         </div>
