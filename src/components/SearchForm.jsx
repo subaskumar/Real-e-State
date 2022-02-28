@@ -52,7 +52,7 @@ export const Filter = (props) => {
     if(preventInitial){
       navigate(`/listings/search/${sale_type}&${min_price}&${max_price}&${bedrooms}&${home_type}&${sqft}&${keywords}&${1}`)
     }
-  },[formData])
+  },[preventInitial,navigate,sale_type,min_price,max_price, bedrooms, home_type, sqft, keywords])
 
 
   const onSubmit = (event) => {
