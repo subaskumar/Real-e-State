@@ -72,7 +72,7 @@ const SellHome = () =>{
         console.log(error)
         dispatch(setSnackBar({open: true, message: 'LogIn Required...!', type: 'error'}))
       })
-    },[])
+    },[Realtors,dispatch])
 
     const submitListing = (event) => {
       event.preventDefault();
@@ -114,7 +114,7 @@ const SellHome = () =>{
       })
       .catch((error) => {
         console.log(error)
-        if(error.response.status == 400){
+        if(error.response.status === 400){
           dispatch(setSnackBar({open: true, message: "You Data is Invalid", type: 'error'}))
         }
         else{

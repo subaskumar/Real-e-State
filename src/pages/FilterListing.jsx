@@ -13,8 +13,6 @@ const Listings = () =>{
 
     const { sale_type,min_price,max_price,bedrooms,home_type,sqft,keywords,Ppage } = useParams()
     const page = parseInt(Ppage)
-    const initialState = {sale_type:sale_type,min_price:min_price,max_price:max_price, 
-          bedrooms:bedrooms,home_type:home_type, sqft:sqft,keywords:keywords,page:page}
     const navigate = useNavigate();
     const [listings, setListings] = useState([])
     const [count,setCount] = useState(0)
@@ -22,6 +20,8 @@ const Listings = () =>{
     
   
   useEffect(() => {
+    const initialState = {sale_type:sale_type,min_price:min_price,max_price:max_price, 
+      bedrooms:bedrooms,home_type:home_type, sqft:sqft,keywords:keywords,page:page}
     document.body.classList.add("scrollBody")
     const config = {
             headers: {
