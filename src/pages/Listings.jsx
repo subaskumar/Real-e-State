@@ -21,10 +21,10 @@ const Listings = () =>{
   useEffect(() => {
     document.body.classList.add("scrollBody")
     if(page > 1){
-      url.current = `http://127.0.0.1:8000/api/listings/?page=${page}`
+      url.current = `https://subaskumarmk.pythonanywhere.com/api/listings/?page=${page}`
     }
     else{
-      url.current = 'http://127.0.0.1:8000/api/listings'
+      url.current = 'https://subaskumarmk.pythonanywhere.com/api/listings'
     }
     const fetchData = async () => {
         try {

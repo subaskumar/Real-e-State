@@ -32,8 +32,8 @@ const LogIn = (props) =>{
         };
     
         const body = JSON.stringify({ email, password });
-
-        Axios.post("http://127.0.0.1:8000/api/token/gettoken",  body, config)
+        // http://127.0.0.1:8000
+        Axios.post("https://subaskumarmk.pythonanywhere.com/api/token/gettoken",  body, config)
             .then((res) => {
                
                 localStorage.setItem('user', jwt_decode(res.data.access))

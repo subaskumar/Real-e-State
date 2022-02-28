@@ -42,7 +42,8 @@ const Register = () =>{
             'Content-Type': 'application/json'
         }
     }
-    Axios.post("http://127.0.0.1:8000/api/accounts/signup", formData, config)
+    // http://127.0.0.1:8000/api/accounts/signup
+    Axios.post("https://subaskumarmk.pythonanywhere.com/api/accounts/signup", formData, config)
     .then((res) => {
         console.log(res)
         if(res.status === 200){

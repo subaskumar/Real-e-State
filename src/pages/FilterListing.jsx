@@ -30,7 +30,7 @@ const Listings = () =>{
         }
     const fetchData = async () => {
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/listings/search/`, {params: initialState}, config);
+            const res = await axios.get(`https://subaskumarmk.pythonanywhere.com/api/listings/search/`, {params: initialState}, config);
             setListings(res.data.results);
             setCount(res.data.count)
         }

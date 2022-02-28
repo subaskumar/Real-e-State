@@ -46,7 +46,7 @@ const ListingDetails = () =>{
                     }
                 };
 
-        axios.get(`http://127.0.0.1:8000/api/listings/${slugs}`,config)
+        axios.get(`https://subaskumarmk.pythonanywhere.com/api/listings/${slugs}`,config)
         .then(res => {
             setListing(res.data);
             console.log(res.data)

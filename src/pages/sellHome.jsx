@@ -62,7 +62,8 @@ const SellHome = () =>{
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       }
-      Axios.get("http://127.0.0.1:8000/api/realtors",config)
+      // http://127.0.0.1:8000
+      Axios.get("https://subaskumarmk.pythonanywhere.com/api/realtors",config)
       .then((res) => {
         setRealtors(res.data)
         console.log(Realtors)
@@ -101,7 +102,7 @@ const SellHome = () =>{
               'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
       }
-      Axios.post("http://127.0.0.1:8000/api/listings/add_listing/", ListingData, config)
+      Axios.post("https://subaskumarmk.pythonanywhere.com/api/listings/add_listing/", ListingData, config)
       .then((res) => {
         console.log(res.data)
         if(res.status === 201 ){
@@ -326,7 +327,7 @@ const SellHome = () =>{
           </Grid>
           <Button type="submit" variant="outlined" size="large" 
             sx={{float: 'left',mt: {xs:3, md:5}, color: '#fff',pading: '7px 15px', mb:8,
-                fontSize: 'clamp(13px,2vw, 18px)',backgroundColor: 'rgb(0, 106, 255)',
+                fontSize: 'clamp(13px,2vw, 16px)',backgroundColor: 'rgb(0, 106, 255)',
                 '&:hover': {backgroundColor: 'rgb(0, 106, 255)',opacity: 0.8}}}>
                 SUBMIT NOW
           </Button>
