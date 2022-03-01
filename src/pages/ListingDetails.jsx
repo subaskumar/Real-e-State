@@ -14,8 +14,9 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import PhoneIcon from '@mui/icons-material/Phone';
-import { useDispatch } from "react-redux";
 import { setSnackBar } from '../features/Alert/snackBarSlice'
+import { useDispatch } from "react-redux";
+import { setBackDropLoading } from '../features/Alert/loading'
 
 
 
@@ -42,6 +43,7 @@ const ListingDetails = () =>{
 
     useEffect(() => {
         const slugs = slug
+        dispatch(setBackDropLoading({isBackDrop: true}))
         const config = {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -51,12 +53,14 @@ const ListingDetails = () =>{
         axios.get(`https://subaskumarmk.pythonanywhere.com/api/listings/${slugs}`,config)
         .then(res => {
             setListing(res.data);
-            console.log(res.data)
+            dispatch(setBackDropLoading({isBackDrop: false}))
+
         })
         .catch(err => {
 
         });
-    }, [slug]);
+    }, [slug,dispatch]);
+
     try {
         if(Object.keys(listing).length !== 0){  // it check for object is empty
             for(let key in listing){

@@ -12,6 +12,7 @@ import FilterListings from "./pages/FilterListing";
 import { BrowserRouter , Routes, Route} from "react-router-dom";
 import './App.css';
 import CustomizedSnackbars from "./components/snackBar"
+import BackdropLoading from "./components/BackDropLoading"
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <BrowserRouter>
           <Layout>
           <CustomizedSnackbars />
+          <BackdropLoading />
             <Routes>
               <Route exact path="/" element={<Home/>}/>
               <Route exact path="/listings/:Ppage" element={<Listings/>}/>

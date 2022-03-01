@@ -1,25 +1,31 @@
 import { useState,useEffect,useRef } from "react";
 import {Typography, Grid,Box,Container,Pagination,Stack} from '@mui/material';
 import axios from 'axios';
-import { useNavigate,useParams} from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import ListingCard from '../components/ListingCard'
-import {Filter} from '../components/SearchForm'
+import { Filter } from '../components/SearchForm'
+import { useDispatch,useSelector } from "react-redux";
+import { setMediaLoading } from '../features/Alert/loading'
+import MediaLoading from "../components/Skeleton"
 
 
 
 const Listings = () =>{
   const { Ppage } = useParams()
   const page = parseInt(Ppage)
-  
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [listings, setListings] = useState([])
   const [count,setCount] = useState(0)
   const total_page = Math.ceil(count/6)
-
   let url = useRef('')
+  const { isLoading } = useSelector(state => state.Loadings);
+
+
   
   useEffect(() => {
-    // document.body.classList.add("scrollBody")
+    dispatch(setMediaLoading({isLoading: true}))
+
     if(page > 1){
       url.current = `https://subaskumarmk.pythonanywhere.com/api/listings/?page=${page}`
     }
@@ -31,21 +37,19 @@ const Listings = () =>{
             const res = await axios.get(url.current);
             setListings(res.data.results);
             setCount(res.data.count)
+            dispatch(setMediaLoading({isLoading: false}))
+
         }
         catch (err) {
         }
     }
     fetchData();
-    // return () => {
-    //   document.body.classList.remove("scrollBody")
-    // }
-    // this will work for stop map scrolling when after intial render of that component
-  },[page]);
+   
+  }, [page,dispatch]);
 
   const handlePageNumber = (event , value) => {
     navigate(`/listings/${value}`)
   };
-
 
   return (
     <>
@@ -75,22 +79,28 @@ const Listings = () =>{
         </Typography>
       </Box>
       <Grid container sx={{justifyContent: 'center',pt: 5}} >
-
-        { listings.map((listing)=> (
-          <ListingCard
-            picture={listing.photo_main} 
-            sale_type={listing.sale_type}
-            address={listing.address} zipcode={listing.zipcode}
-            city={listing.city} state={listing.state}
-            price={listing.price}
-            slug={listing.slug}
-            bedrooms={listing.bedrooms} 
-            bathrooms={listing.bathrooms} 
-            sqft={listing.sqft}
-            past_time = {listing.past_time}
-            key={listing.slug}
-          />
-        ))}   
+      {isLoading ? (
+        <MediaLoading />
+        ) : ( <>
+              {listings.map((listing)=> (
+                <ListingCard
+                  picture={listing.photo_main} 
+                  sale_type={listing.sale_type}
+                  address={listing.address} zipcode={listing.zipcode}
+                  city={listing.city} state={listing.state}
+                  price={listing.price}
+                  slug={listing.slug}
+                  bedrooms={listing.bedrooms} 
+                  bathrooms={listing.bathrooms} 
+                  sqft={listing.sqft}
+                  past_time = {listing.past_time}
+                  key={listing.slug}
+                />
+                ))
+              }
+              </>
+          )
+      } 
       </Grid>
       <Grid container sx={{justifyContent: 'center', padding: '40px 0px'}} >
         <Stack spacing={2}>

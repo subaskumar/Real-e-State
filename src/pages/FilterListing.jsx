@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useNavigate,useParams} from 'react-router-dom';
 import ListingCard from '../components/ListingCard'
 import {Filter} from '../components/SearchForm'
+import { useDispatch,useSelector } from "react-redux";
+import { setMediaLoading } from '../features/Alert/loading'
+import MediaLoading from "../components/Skeleton"
 
 
 
@@ -14,12 +17,18 @@ const Listings = () =>{
     const { sale_type,min_price,max_price,bedrooms,home_type,sqft,keywords,Ppage } = useParams()
     const page = parseInt(Ppage)
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const [listings, setListings] = useState([])
     const [count,setCount] = useState(0)
     const total_page = Math.ceil(count/6)
+    const { isLoading } = useSelector(state => state.Loadings);
+
+
     
   
   useEffect(() => {
+    dispatch(setMediaLoading({isLoading: true}))
+
     const initialState = {sale_type:sale_type,min_price:min_price,max_price:max_price, 
       bedrooms:bedrooms,home_type:home_type, sqft:sqft,keywords:keywords,page:page}
     // document.body.classList.add("scrollBody")
@@ -33,6 +42,8 @@ const Listings = () =>{
             const res = await axios.get(`https://subaskumarmk.pythonanywhere.com/api/listings/search/`, {params: initialState}, config);
             setListings(res.data.results);
             setCount(res.data.count)
+            dispatch(setMediaLoading({isLoading: false}))
+
         }
         catch (err) {
         }
@@ -41,7 +52,7 @@ const Listings = () =>{
     // return () => {
     //   document.body.classList.remove("scrollBody")
     // }
-  },[sale_type,min_price,max_price,bedrooms,home_type,sqft,keywords,page]);
+  },[sale_type,min_price,max_price,bedrooms,home_type,sqft,keywords,page,dispatch]);
 
   const handlePageNumber = (event , value) => {
     navigate(`/listings/search/${sale_type}&${min_price}&${max_price}&${bedrooms}&${home_type}&${sqft}&${keywords}&${value}`)
@@ -76,22 +87,28 @@ const Listings = () =>{
         </Typography>
       </Box>
       <Grid container sx={{justifyContent: 'center'}} >
-        {
-          listings.map((listing)=> (
-            <ListingCard
-              picture={listing.photo_main} 
-              sale_type={listing.sale_type}
-              address={listing.address} zipcode={listing.zipcode}
-              city={listing.city} state={listing.state}
-              price={listing.price}
-              slug={listing.slug}
-              bedrooms={listing.bedrooms} 
-              bathrooms={listing.bathrooms} 
-              sqft={listing.sqft}
-              past_time = {listing.past_time}
-              key={listing.slug}
-            />
-        ))}  
+      {isLoading ? (
+        <MediaLoading />
+        ) : ( <>
+                {
+                  listings.map((listing)=> (
+                    <ListingCard
+                      picture={listing.photo_main} 
+                      sale_type={listing.sale_type}
+                      address={listing.address} zipcode={listing.zipcode}
+                      city={listing.city} state={listing.state}
+                      price={listing.price}
+                      slug={listing.slug}
+                      bedrooms={listing.bedrooms} 
+                      bathrooms={listing.bathrooms} 
+                        sqft={listing.sqft}
+                      past_time = {listing.past_time}
+                      key={listing.slug}
+                    />
+                ))}
+              </>
+            )
+      }
       </Grid>
       <Grid container sx={{justifyContent: 'center', padding: '40px 0px'}} >
         <Stack spacing={2}>

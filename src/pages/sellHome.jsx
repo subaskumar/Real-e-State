@@ -7,6 +7,7 @@ import Axios from 'axios'
 import { setSnackBar } from '../features/Alert/snackBarSlice'
 import { useDispatch } from "react-redux";
 
+
 const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
     color: theme.palette.common.white, position: 'relative', display: 'flex', alignItems: 'center',
     [theme.breakpoints.up('sm')]: { height: '40vh', minHeight: 250,maxHeight: 1300,},
