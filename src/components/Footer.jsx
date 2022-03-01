@@ -48,7 +48,7 @@ const Footer = () => {
   return (
       <>
         <footer className={classes.footer}>
-          <Container maxWidth="lg" sx={{height: 'auto'}}>
+          <Container maxWidth="lg" sx={{height: 'auto',pl: {xs: 7},pr:{xs:7}}}>
             <Grid container spacing={2} className="footer_list" >
               <Grid item xs={12} sm={6.5} md={5} sx={{marginRight: "15px"}}>
                 <div>
@@ -131,14 +131,13 @@ const Footer = () => {
             </Grid>
             <Divider sx={{marginTop: '30px'}}/>
             <Grid container spacing={2} sx={{marginTop: '0px', color: '#fff'}}>
-              <Grid item xs={6} md={6}>
-                <div className="row"> 
+              <Grid item xs={12} sm={7} md={6}>
+                <div className="row" style={{fontSize: 'clamp(13px, 3vw, 16px)'}}> 
                   © 2021 CoStar Group. All Rights Reserved.
                 </div>
               </ Grid>
-              <Grid item xs={6} md={6} align="right">
+              <Grid item xs={12} sm={5} md={6} align="right" sx={{display: {xs: 'none',sm: 'block'}}}>
                 <div className='footrEnd'> 
-                  <a href="/advertise/disclaimers/avoid-scams-and-fraud" target="_self">Avoid Scams</a>
                   <a href="http://www.apartments.com/sitemap/" target="_self">Sitemap</a>
                   <a href="/advertise/disclaimers/privacy-statement" target="_self">Privacy Statement</a>
                   <a href="/advertise/disclaimers/terms-of-service" target="_self">Terms of Service</a>

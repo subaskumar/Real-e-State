@@ -14,6 +14,11 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
     minHeight: 500,
     maxHeight: 1300,
   },
+  [theme.breakpoints.down('sm')]: {
+    height: '70vh',
+    minHeight: 300,
+    maxHeight: 400,
+  },
 }));
 
 const Background = styled(Box)({
@@ -34,7 +39,7 @@ function ProductHeroLayout(props) {
     <ProductHeroLayoutRoot>
       <Container
         sx={{
-          mt: 3,
+          mt: {xs:13,sm:10,},
           mb: 14,
           display: 'flex',
           flexDirection: 'column',

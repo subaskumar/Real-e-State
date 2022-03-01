@@ -22,7 +22,9 @@ import { setSnackBar } from '../features/Alert/snackBarSlice'
 
 const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   color: theme.palette.common.white, position: 'relative', display: 'flex', alignItems: 'center',
-  [theme.breakpoints.up('sm')]: { height: '40vh', minHeight: 280,maxHeight: 1300,}, }));
+  [theme.breakpoints.up('sm')]: { height: '40vh', minHeight: 280,maxHeight: 1300,},
+  [theme.breakpoints.down('sm')]: {
+    height: '30vh',minHeight: 200,maxHeight: 300,}, }));
 
 const Background = styled(Box)({
   position: 'absolute', left: 0, right: 0, top: 0, bottom: 0,backgroundSize: 'cover',
@@ -114,12 +116,12 @@ const ListingDetails = () =>{
             >
         <Typography
             color="inherit" align="center" variant="h3"
-            sx={{ mb: 1, mt: { sx: 4, sm: 10 }, fontFamily: 'italic',fontSize: 'clamp(25px,6vw, 40px)' }}
+            sx={{ mb: 1, mt: 10, fontFamily: 'italic',fontSize: 'clamp(25px,6vw, 40px)' }}
         >
             {listing.title}
         </Typography>
 
-        <Typography variant="span" color="inherit" sx={{ mt: 1, fontSize: 'clamp(17px,2vw, 22px)',color: 'rgb(0, 106, 255)', fontWeight: '500' }}>
+        <Typography variant="span" color="inherit" sx={{ mt: {xs:0.5,sm:1}, fontSize: 'clamp(17px,2vw, 22px)',color: 'rgb(0, 106, 255)', fontWeight: '500' }}>
             {listing.city},{listing.state},{listing.zipcode}
         </Typography>
             <Box

@@ -5,7 +5,8 @@ import HomeIcon from '@mui/icons-material/Home';
 
 const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
     color: theme.palette.common.white, position: 'relative', display: 'flex', alignItems: 'center',
-    [theme.breakpoints.up('sm')]: { height: '40vh', minHeight: 250,maxHeight: 1300,}, }));
+    [theme.breakpoints.up('sm')]: { height: '40vh', minHeight: 250,maxHeight: 1300,}, 
+    [theme.breakpoints.down('sm')]: { height: '30vh',minHeight: 200,maxHeight: 300,}, }));
   
 const Background = styled(Box)({
     position: 'absolute', left: 0, right: 0, top: 0, bottom: 0,backgroundSize: 'cover',
@@ -41,9 +42,9 @@ const AgentFinder = () =>{
             >
             <Typography
                 color="inherit" align="center" variant="h4"
-                sx={{ mb: 2, mt: { sx: 4, sm: 10 },fontWeight: 500 }}
+                sx={{ mb: 2, mt: 10,fontWeight: 500,fontSize: 'clamp(22px, 3vw, 35px)' }}
             >
-                Contact With Our Realtors For Rent / Sale
+                Contact With Realtors For Rent / Sale
             </Typography>
             <div role="presentation" >
                 <Breadcrumbs aria-label="breadcrumb" sx={{cursor: 'pointer'}}>

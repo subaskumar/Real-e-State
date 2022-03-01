@@ -65,12 +65,12 @@ export const Filter = (props) => {
     <>
         <div className="Listing_searchPg">
           <InputBase
-            sx={{ width: '90px', fontSize: '12px', fontWeight: '600', color: 'black',padding: '5px 5px' }}
+            sx={{ width: '100px', fontSize: '12px', fontWeight: '600', color: 'black',padding: '5px 5px' }}
             placeholder="ZipCode or City" name="keywords" id="input" value={keywords}  onChange={handleChange}
                     
             />
         </div>
-        <TextField select name="sale_type" label="Sale or Rent" sx={{mr:1.5,p:0,width: '110px',}}
+        <TextField select name="sale_type" label="Sale or Rent" sx={{mr:1.5,p:0,width: '130px',}}
             size='small' value={sale_type} onChange={handleChange}
           >
             {sale_types.map((option) => (
@@ -79,7 +79,7 @@ export const Filter = (props) => {
               </MenuItem>
             ))}
         </TextField>
-        <TextField select name="min_price" label="Min Price" sx={{mr:1.5,width: '110px'}}
+        <TextField select name="min_price" label="Min Price" sx={{mr:1.5,width: '130px'}}
             size='small' value={min_price} onChange={handleChange}
           >
             {min_prices.map((option) => (
@@ -88,7 +88,7 @@ export const Filter = (props) => {
               </MenuItem>
             ))}
         </TextField>
-        <TextField select name="max_price" label="Max Price" sx={{mr:1.5,width: '110px'}}
+        <TextField select name="max_price" label="Max Price" sx={{mr:1.5,width: '130px'}}
             size='small' value={max_price} onChange={handleChange}
           >
             {max_prices.map((option) => (
@@ -97,7 +97,7 @@ export const Filter = (props) => {
               </MenuItem>
             ))}
         </TextField>
-        <TextField select name="bedrooms" label="Bedrooms" sx={{mr:1.5,width: '110px'}}
+        <TextField select name="bedrooms" label="Bedrooms" sx={{mr:1.5,width: '130px'}}
             size='small' value={bedrooms} onChange={handleChange}
           >
             {Bedrooms.map((option) => (
@@ -106,7 +106,7 @@ export const Filter = (props) => {
               </MenuItem>
             ))}
         </TextField>
-        <TextField select name="home_type" label="Home Type" sx={{mr:1.5,width: '110px'}}
+        <TextField select name="home_type" label="Home Type" sx={{mr:1.5,width: '130px'}}
             size='small' value={home_type} onChange={handleChange}
           >
              {home_types.map((option) => (
@@ -117,7 +117,7 @@ export const Filter = (props) => {
         </TextField>
 
         <TextField select name="sqft" label="Square Foot" size='small'
-            value={sqft} onChange={handleChange} sx={{mr:1.5,width: '110px'}}
+            value={sqft} onChange={handleChange} sx={{mr:1.5,width: '130px'}}
           >
             {SquareFoot.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -165,7 +165,7 @@ export default function SearchForm() {
       <Box
         component="form" Validate autoComplete="off"
         onSubmit={e => onSubmit(e)}
-        sx={{ '& .MuiTextField-root': { m: 1, width: { xs: '11ch',sm: '17ch', md: '20ch' } , color: 'white' },}}
+        sx={{ '& .MuiTextField-root': { m: {xs:0.5,sm:1}, width: { xs: '12ch',sm: '17ch', md: '20ch' } , color: 'white' },}}
       >
         <div>
         <TextField
@@ -249,7 +249,7 @@ export default function SearchForm() {
             ))}
           </TextField>
         </div>
-        <div>
+        <div style={{margin: '0px 2px'}}>
           <Paper
               sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', }}
               >

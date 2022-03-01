@@ -30,7 +30,7 @@ function ImgMediaCard() {
 
   const image_obj = [
     {'img' : Buy_img, 'title': 'Buy a home','btn': 'Search homes', 'body': 'Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.' },
-    {'img': Sell_img,'title': 'Sell a home','btn': 'See your options', 'body': 'No matter what path you take to sell your home, we can help you navigate a successful sale.'},
+    {'img': Sell_img,'title': 'Sell a home','btn': 'See options', 'body': 'No matter what path you take to sell your home, we can help you navigate a successful sale.'},
     {'img' : Rent_img,'title': 'Rent a home','btn': 'find rentals','body': 'We’re creating a seamless online experience - from shopping on the largest rental network, to applying, to paying rent.'}
   ]
 
